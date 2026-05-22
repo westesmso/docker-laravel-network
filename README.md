@@ -1,5 +1,7 @@
 # Laravel Toy Store
 
+[![Build and Push Docker Images](https://github.com/westesmso/docker-laravel-network/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/westesmso/docker-laravel-network/actions/workflows/docker-publish.yml)
+
 Projeto independente do projeto anterior em Python/Flask.
 
 Este projeto implementa uma loja de brinquedos com:
