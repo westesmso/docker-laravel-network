@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fb;
+  color: #162033;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.subtitle {
+  margin: 8px 0 24px;
+  color: #4e5970;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dde4f2;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #c6d1e7;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 6px;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+button {
+  border: 0;
+  background: #1f6feb;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  background: #195ec9;
+}
+
+#toy-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.toy-item {
+  border: 1px solid #dde4f2;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.toy-info {
+  margin: 0;
+}
+
+.toy-meta {
+  margin: 6px 0 0;
+  color: #4e5970;
+}
+
+.delete-btn {
+  background: #c62828;
+}
+
+.delete-btn:hover {
+  background: #a01f1f;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

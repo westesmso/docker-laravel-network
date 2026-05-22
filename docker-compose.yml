@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: toy-store-backend
+    working_dir: /var/www/html
+    volumes:
+      - ./backend:/var/www/html
+    ports:
+      - "8000:8000"
+    networks:
+      - toyshop-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: toy-store-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8081:80"
+    networks:
+      - toyshop-network
+
+networks:
+  toyshop-network:
+    driver: bridge
