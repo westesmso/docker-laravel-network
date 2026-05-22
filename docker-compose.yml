@@ -4,8 +4,6 @@ services:
       context: ./backend
     container_name: toy-store-backend
     working_dir: /var/www/html
-    volumes:
-      - ./backend:/var/www/html
     ports:
       - "8000:8000"
     networks:

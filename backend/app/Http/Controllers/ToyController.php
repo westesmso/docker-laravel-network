@@ -31,8 +31,12 @@ class ToyController extends Controller
 
     public function destroy(Toy $toy): JsonResponse
     {
-        $toy->stock -= 1;
-        $toy->save();
+        if($toy->stock > 0) {
+            $toy->stock -= 1;
+            $toy->save();
+        } else {
+            $toy->delete();
+        }
 
         return response()->json(status: 204);
     }
