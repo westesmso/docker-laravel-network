@@ -102,5 +102,8 @@ Esse workflow faz build e push das imagens backend e frontend no Docker Hub em p
 
 Configure os secrets no repositorio GitHub:
 
-- DOCKERHUB_USERNAME
 - DOCKERHUB_TOKEN
+
+Opcional:
+
+- DOCKERHUB_USERNAME (se nao definir, o workflow usa automaticamente o owner do repositorio)

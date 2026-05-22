@@ -15,10 +15,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Resolve Docker Hub username
+        id: dockerhub_user
+        run: |
+          USERNAME="${DOCKERHUB_USERNAME}"
+          if [ -z "$USERNAME" ]; then
+            USERNAME="${GITHUB_REPOSITORY_OWNER}"
+          fi
+          echo "username=$USERNAME" >> "$GITHUB_OUTPUT"
+
+      - name: Validate Docker Hub credentials
+        run: |
+          if [ -z "${{ secrets.DOCKERHUB_TOKEN }}" ]; then
+            echo "Erro: o secret DOCKERHUB_TOKEN nao foi configurado no repositorio."
+            echo "Configure em: Settings > Secrets and variables > Actions > New repository secret"
+            exit 1
+          fi
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -29,14 +48,14 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: ${{ steps.dockerhub_user.outputs.username }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Extract metadata (backend)
         id: meta_backend
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/laravel-toy-store-backend
+          images: ${{ steps.dockerhub_user.outputs.username }}/laravel-toy-store-backend
           tags: |
             type=raw,value=latest
             type=sha,prefix=sha-
@@ -53,7 +72,7 @@ jobs:
         id: meta_frontend
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/laravel-toy-store-frontend
+          images: ${{ steps.dockerhub_user.outputs.username }}/laravel-toy-store-frontend
           tags: |
             type=raw,value=latest
             type=sha,prefix=sha-
