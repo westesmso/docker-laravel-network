@@ -90,6 +90,15 @@ Exemplo de tags:
 - seuusuario/laravel-toy-store-backend:latest
 - seuusuario/laravel-toy-store-frontend:latest
 
-## GitHub
+## CI/CD com GitHub Actions
 
-Este projeto deve ser versionado em repositorio separado do projeto Flask/Python.
+Pipeline em:
+
+- .github/workflows/docker-publish.yml
+
+Esse workflow faz build e push das imagens backend e frontend no Docker Hub em push para a branch main.
+
+Configure os secrets no repositorio GitHub:
+
+- DOCKERHUB_USERNAME
+- DOCKERHUB_TOKEN
